@@ -3,6 +3,7 @@ import styles from '@/styles/Home.module.css';
 import { getAllPosts } from '@/utils/api';
 import { PostType } from '@/utils/Types';
 import Link from 'next/link';
+import type { GetServerSideProps } from 'next';
 
 type Props = {
   posts: PostType[];
@@ -18,15 +19,10 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-export async function getStaticProps() {
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const posts: PostType[] = await getAllPosts();
-
-  return {
-    props: {
-      posts,
-    },
-  };
-}
+  return { props: { posts } };
+};
 
 export default function Home({ posts }: Props) {
   return (
@@ -35,6 +31,11 @@ export default function Home({ posts }: Props) {
     >
       <div className={styles.container}>
         <h1>Nest.js Blog</h1>
+        <div className={styles.actions}>
+          <Link className={styles.buttonLink} href="/posts/new">
+            New Post
+          </Link>
+        </div>
         <ul className={styles.postList}>
           {posts.map((post: PostType) => (
             <Link href={`/posts/${post.id}`} key={post.id}>
@@ -43,7 +44,6 @@ export default function Home({ posts }: Props) {
                 <p className={styles.author}>by{post.author}</p>
               </li>
             </Link>
-            
           ))}
         </ul>
       </div>
