@@ -16,6 +16,8 @@
   text-decoration: none;
   color: #1f3b52;
   background: #eef6ff;
+  cursor: pointer;
+  font: inherit;
 }
 
 .buttonLink:hover {

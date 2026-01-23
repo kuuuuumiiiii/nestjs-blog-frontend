@@ -2,9 +2,9 @@ import styles from '@/styles/Home.module.css';
 import { deletePost, updatePost } from '@/utils/api';
 import type { PostType } from '@/utils/Types';
 import type { GetServerSideProps } from 'next';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { BackButton } from '@/components/BackButton';
 
 type Props = {
   post: PostType;
@@ -62,9 +62,7 @@ export default function EditPostPage({ post }: Props) {
   return (
     <div className={styles.container}>
       <div className={styles.actions}>
-        <Link className={styles.buttonLink} href={`/posts/${post.id}`}>
-          ← Back
-        </Link>
+        <BackButton fallbackHref={`/posts/${post.id}`}>← 戻る</BackButton>
       </div>
 
       <h1 className={styles.title}>Edit Post</h1>
@@ -120,5 +118,7 @@ export default function EditPostPage({ post }: Props) {
     </div>
   );
 }
+
+
 
 

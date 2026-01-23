@@ -49,7 +49,7 @@ const Post = ({ post }: Props) => {
     <div className={styles.container}>
       <div className={styles.actions}>
         <Link className={styles.buttonLink} href="/">
-          ← Home
+          ← 戻る
         </Link>
       </div>
       <h1 className={styles.title}>{post.title}</h1>

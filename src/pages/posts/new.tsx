@@ -3,6 +3,7 @@ import { createPost } from '@/utils/api';
 import type { PostType } from '@/utils/Types';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { BackButton } from '@/components/BackButton';
 
 export default function NewPostPage() {
   const router = useRouter();
@@ -28,6 +29,9 @@ export default function NewPostPage() {
 
   return (
     <div className={styles.container}>
+      <div className={styles.actions}>
+        <BackButton fallbackHref="/">← 戻る</BackButton>
+      </div>
       <h1 className={styles.title}>New Post</h1>
 
       <form className={styles.form} onSubmit={onSubmit}>
